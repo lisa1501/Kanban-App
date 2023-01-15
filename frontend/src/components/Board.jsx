@@ -94,7 +94,7 @@ function Board(props) {
                         board.columnOrder.map((columnId, index) => {
                             const column = board.columns[columnId];
                             const tasks = column.taskIds.map(taskIds => board.tasks[taskIds]);
-                            return <Column key={column.id} column={column} tasks={tasks} index={index} />
+                            return <Column key={column.id} column={column} tasks={tasks} index={index} board={board} setBoard={setBoard} />
                         })
                     }
                     {provided.placeholder}

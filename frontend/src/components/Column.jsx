@@ -2,7 +2,7 @@ import React, {useState,useEffect} from "react";
 import styled from 'styled-components';
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import Task from "./Task"
-
+import AddTask from "./AddTask";
 const Container = styled.div`
     margin: 8px;
     border: 1px solid black;
@@ -38,6 +38,7 @@ function Column(props) {
                                 )
                             }
                             {provided.placeholder}
+                            <AddTask columnId={props.column.id} board={props.board} setBoard={props.setBoard} />
                         </TaskList>
                     )}
                     </Droppable>
