@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
 import styled from 'styled-components';
+import { Draggable, Droppable } from 'react-beautiful-dnd'
 import Task from "./Task"
 
 const Container = styled.div`
@@ -11,7 +12,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     padding-bottom:10px;
-
+    background-color:white;
 `;
 
 const Title = styled.h3`
@@ -24,17 +25,25 @@ const TaskList = styled.div`
 
 function Column(props) {
     return (
-        <Container>
-            <Title>{props.column.title}</Title>
-            <TaskList>
-                {
-                    props.tasks.map((task, index) => 
-                        (<Task key={task.id} task={task} index={index} columnId={props.column.id} />)
-                    )
-
-                }
-            </TaskList>
-        </Container>
+        <Draggable draggableId={props.column.id} index={props.index}>
+            {provided => (
+                <Container {...provided.draggableProps} ref={provided.innerRef}>
+                    <Title {...provided.dragHandleProps}>{props.column.title}</Title>
+                    <Droppable droppableId={props.column.id} type="task">
+                        {provided => (
+                        <TaskList {...provided.droppableProps} ref={provided.innerRef}>
+                            {
+                                props.tasks.map((task, index) => 
+                                    (<Task key={task.id} task={task} index={index} columnId={props.column.id} />)
+                                )
+                            }
+                            {provided.placeholder}
+                        </TaskList>
+                    )}
+                    </Droppable>
+                </Container>
+            )}
+        </Draggable>
 
     )
 }
