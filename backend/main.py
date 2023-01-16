@@ -26,7 +26,7 @@ class Columns(BaseModel):
 
 class Board(BaseModel):
     tasks: Tasks
-    column: Columns
+    columns: Columns
     columnOrder:list
 
 class User(Model):
@@ -37,11 +37,20 @@ class User(Model):
 
 User_Pydantic = pydantic_model_creator(User, name='User')
 UserIn_Pydantic = pydantic_model_creator(User, name="UserIn", exclude_readonly= True, exclude=('board',))
+
 @app.get('/board')
 async def get_board():
     user = await User.get(id=1)
+    # return {"status": "success"}
     return {'board':user.board}
 
+@app.post('/board')
+async def save_board(board: Board):
+    user = await User.get(id=1)
+    user.board = board.json()
+    await user.save()
+
+    return {"status": "success"}
 register_tortoise(
     app, 
     db_url='postgres://postgres:Password1@127.0.0.1:5432/postgres',
