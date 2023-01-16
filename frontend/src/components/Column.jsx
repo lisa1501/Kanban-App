@@ -53,7 +53,7 @@ function Column(props) {
             {provided => (
                 <Container {...provided.draggableProps} ref={provided.innerRef}>
                     <Title {...provided.dragHandleProps}>{props.column.title}
-                        <span onClick={() => deleteColumn(props.column.id, props.index)}>X</span>
+                        <span onClick={() => deleteColumn(props.column.id, props.index)}> X</span>
                     </Title>
                     <Droppable droppableId={props.column.id} type="task">
                         {provided => (
