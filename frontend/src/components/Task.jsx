@@ -39,7 +39,7 @@ function Task(props) {
             {provided => (
                 <ContainerTask {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                     {props.task.content}
-                    <span onClick={() => deleteTask(props.columnId, props.index, props.task.id)}>X</span>
+                    <span onClick={() => deleteTask(props.columnId, props.index, props.task.id)}> X</span>
                 </ContainerTask>
             )}
         </Draggable>
