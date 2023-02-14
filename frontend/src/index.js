@@ -1,17 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import Board from './components/Board';
-import {BrowserRouter, Routes,Route} from 'react-router-dom'
+import Register from './components/Register';
+import {BrowserRouter, Routes,Route, Navigate} from 'react-router-dom'
 
+
+function getToken() {
+    const tokenString = localStorage.getItem('token');
+    const userToken = JSON.parse(tokenString);
+    return userToken
+    }
 
 function App() {
+    const [token, setToken] = useState(() => getToken());
     return (
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/">
-                        <Board />
-                    </Route>
+                    <Route exact path="/" element={!token ? <Navigate to="/register"/>:<Board token={token}/>}></Route>
+                    <Route path="/register" element={<Register setToken={setToken}/>}></Route>
                 </Routes>
                 
             </BrowserRouter>
