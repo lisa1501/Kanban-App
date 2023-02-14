@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import Board from './components/Board';
 import Register from './components/Register';
+import Login from './components/Login';
 import {BrowserRouter, Routes,Route, Navigate} from 'react-router-dom'
 
 
@@ -19,6 +20,7 @@ function App() {
                 <Routes>
                     <Route exact path="/" element={!token ? <Navigate to="/register"/>:<Board token={token}/>}></Route>
                     <Route path="/register" element={<Register setToken={setToken}/>}></Route>
+                    <Route path="/login" element={<Login setToken={setToken}/>}></Route>
                 </Routes>
                 
             </BrowserRouter>
