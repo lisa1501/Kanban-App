@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Column from "./Column";
 import AddColumn from "./AddColumn";
 import { DragDropContext, Droppable} from 'react-beautiful-dnd';
+import Logout from "./Logout";
 
 
 const Container = styled.div`
@@ -108,6 +109,7 @@ function Board(props) {
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <AddColumn board={board} setBoard={setBoard} />
+            <Logout />
             <Droppable droppableId="all-columns" direction="horizontal" type="column">
                 {provided => (
                 <Container {...provided.droppableProps} ref={provided.innerRef}>
