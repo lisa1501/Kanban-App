@@ -4,6 +4,7 @@ import Column from "./Column";
 import AddColumn from "./AddColumn";
 import { DragDropContext, Droppable} from 'react-beautiful-dnd';
 
+
 const Container = styled.div`
     display: flex;
 `
