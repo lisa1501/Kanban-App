@@ -20,7 +20,11 @@ function Board(props) {
 
     },[board]);
     async function fetchBoard() {
-        const response = await fetch('/board');
+        const response = await fetch('/board',{
+            headers:{
+                "Autherization":"Bearer "+ props.token
+            }
+        });
         const data = await response.json();
         console.log(data)
         return data.board;
@@ -31,6 +35,7 @@ function Board(props) {
             method: 'POST',
             headers:{
                 'Content-Type':'application/json',
+                "Autherization":"Bearer "+ props.token
             },
             body: JSON.stringify(board),
         });
