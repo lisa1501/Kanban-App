@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 function Register(props) {
     const [username, setUsername] = useState();
@@ -37,9 +37,19 @@ function Register(props) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                Username <input type="text" onChange={e => setUsername(e.target.value)} />
-                Password <input type="password" onChange={e => setPassword(e.target.value)} /> 
-                <button>Register</button>
+                <p>
+                    Username <input type="text" onChange={e => setUsername(e.target.value)} />
+                </p>
+                <p>
+                    Password <input type="password" onChange={e => setPassword(e.target.value)} /> 
+                </p>
+                <p>
+                    <button>Register</button>
+                </p>
+                <p>
+                    <Link to="/login">Already have an account? Login here!</Link>
+                </p>
+                
             </form>
         </div>
     )
